@@ -1,0 +1,63 @@
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  wordpress_files:
+    # driver: local
+    # driver_opts:
+    #   device: /Users/aamoussa/files/wordpress_files
+    #   type: none
+    #   o: bind
+  db_files:
+    # driver: local
+    # driver_opts:
+    #   device: /Users/aamoussa/files/db_files
+    #   type: none
+    #   o: bind
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    restart: always
+    image: nginx
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+    pull_policy: never
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_files:/var/www
+    networks:
+      - mynetwork
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: always
+    image: wordpress
+    pull_policy: never
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_files:/var/www
+    networks:
+      - mynetwork
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: always
+    image: mariadb
+    pull_policy: never
+    env_file:
+      - .env
+    volumes:
+      - db_files:/var/lib/mysql
+    networks:
+      - mynetwork
