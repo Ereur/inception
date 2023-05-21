@@ -61,3 +61,46 @@ services:
       - db_files:/var/lib/mysql
     networks:
       - mynetwork
+  
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    restart: always
+    image: redis
+    pull_policy: never
+    depends_on:
+      - wordpress
+    env_file:
+      - .env
+    networks:
+      - mynetwork
+
+  ftp:
+    container_name: ftp
+    build: requirements/bonus/ftp
+    image: ftp
+    restart: always
+    ports:
+      - "21:21"
+      - "40000-40009:40000-40009"
+    env_file:
+      - .env
+    volumes:
+      - wordpress_files:/content
+    networks:
+      - mynetwork
+    depends_on:
+      - wordpress
+  adminer:
+    container_name: adminer
+    build: requirements/bonus/adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    networks:
+      - mynetwork
+    depends_on:
+      - mariadb

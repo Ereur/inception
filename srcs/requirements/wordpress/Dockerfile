@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:buster
 
 RUN apt-get update && apt-get install -y curl php php-redis php-fpm php-mysql mariadb-client php-curl php-gd php-json php-mbstring php-xml php-zip sendmail
 

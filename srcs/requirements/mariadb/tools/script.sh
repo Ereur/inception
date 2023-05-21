@@ -4,11 +4,11 @@ sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d
 
 service mysql start
 
-echo "CREATE DATABASE IF NOT EXISTS $DbName;" > db.sql
+echo "CREATE DATABASE IF NOT EXISTS $DBNAME;" > db.sql
 
-echo "CREATE USER IF NOT EXISTS '$DbUser'@'%' IDENTIFIED BY '$DbPass' ;" >> db.sql
+echo "CREATE USER IF NOT EXISTS '$DBUSER'@'%' IDENTIFIED BY '$DBPASS' ;" >> db.sql
 
-echo "GRANT ALL PRIVILEGES ON $DbName.* TO '$DbUser'@'%' ;" >> db.sql
+echo "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$DBUSER'@'%' ;" >> db.sql
 
 echo "FLUSH PRIVILEGES;" >> db.sql
 
