@@ -4,17 +4,17 @@ networks:
 
 volumes:
   wordpress_files:
-    # driver: local
-    # driver_opts:
-    #   device: /Users/aamoussa/files/wordpress_files
-    #   type: none
-    #   o: bind
+    driver: local
+    driver_opts:
+      device: /home/aamoussa/data/wordpress_files
+      type: none
+      o: bind
   db_files:
-    # driver: local
-    # driver_opts:
-    #   device: /Users/aamoussa/files/db_files
-    #   type: none
-    #   o: bind
+    driver: local
+    driver_opts:
+      device: /home/aamoussa/data/db_files
+      type: none
+      o: bind
 
 services:
   nginx:

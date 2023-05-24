@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# while true; do sleep 1000; done
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
@@ -9,13 +8,6 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install node
 
-# npm install -g @nestjs/cli
-# mkdir app && cd app
-# nest new static-website -p npm
-# cd static-website
-# npm run start:dev
-# while
-
 cd app
 
-npm start
+npm install && npm start
