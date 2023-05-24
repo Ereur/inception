@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 mkdir -p /var/www/html/wordpress
 
 wp core download --path=/var/www/html/wordpress --allow-root

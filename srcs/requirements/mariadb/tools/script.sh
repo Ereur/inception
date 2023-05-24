@@ -8,7 +8,7 @@ echo "CREATE DATABASE IF NOT EXISTS $DBNAME;" > db.sql
 
 echo "CREATE USER IF NOT EXISTS '$DBUSER'@'%' IDENTIFIED BY '$DBPASS' ;" >> db.sql
 
-echo "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$DBUSER'@'%' ;" >> db.sql
+echo "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$DBUSER'@'%' IDENTIFIED BY '$DBPASS' ;" >> db.sql
 
 echo "FLUSH PRIVILEGES;" >> db.sql
 
